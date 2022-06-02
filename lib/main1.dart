@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 
 Future<List<Data>> fetchData() async {
-  final response =  await   http.get(Uri.parse('http://164.100.191.3/odct/api/testapi.php'));
+  final response =  await   http.get(Uri.parse('https://erevenuecourt.jharkhand.gov.in/api/PendingCaseReport'));
   print (response.statusCode);
   if (response.statusCode == 200) {
     List jsonResponse = json.decode(response.body);
@@ -17,14 +17,21 @@ Future<List<Data>> fetchData() async {
 
 
 class Data {
-  final String formname;
+  final String district;
+  final String total;
+  final String disposed;
+  final String pending;
+  final String dcode;
 
-  Data({this.formname=''});
+  Data({this.district='', this.total='', this.disposed='', this.pending='', this.dcode=''});
 
   factory Data.fromJson(Map<String, dynamic> json) {
     return Data(
-      formname: json['formname'],
-
+      district: json['district'],
+      total: json['total'],
+      disposed: json['disposed'],
+      pending: json['pending'],
+      dcode: json['dcode'],
     );
   }
 }
@@ -63,7 +70,7 @@ class _myappState extends State<myapp> {
                       return Card(
                         color: Colors.white,
                         child: ListTile(
-                          title: Text(data[index].formname),
+                          title: Text(data[index].district),
                           onTap: ()
                           {
 
