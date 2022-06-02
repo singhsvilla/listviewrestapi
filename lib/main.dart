@@ -66,7 +66,7 @@ class _myappState extends State<myapp> {
                           title: Text(data[index].formname),
                           onTap: ()
                           {
-
+                            AlertDialog(title:Text("Clicked"));
                           },
                         ),
                       );
